@@ -1,0 +1,22 @@
+.tile {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  width: 400px;
+  min-height: 300px;
+  max-height: 300px;
+  overflow: scroll;
+  padding: 20px;
+  background-color: teal;
+  margin: 10px;
+}
+
+.list {
+  
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-around;
+}

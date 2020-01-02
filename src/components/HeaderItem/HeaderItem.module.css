@@ -1,0 +1,17 @@
+.item {
+    height: 100%;
+    /* padding: 15px 15px 14px; */
+    /* border-bottom: 1px solid #dddfe0; */
+    display: flex;
+    transition: background-color .25s ease;
+    cursor: pointer;
+    /* width: 25vw; */
+}
+
+.text {
+    flex: 1;
+    text-align: center;
+    margin: auto;
+    font-size: 17px;
+}
+

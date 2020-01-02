@@ -1,0 +1,25 @@
+.row {
+  display: flex;
+  height: 250px;
+  width: 300px;
+  margin: 10px auto;
+  background: url(../../oblako.png);
+  justify-content: center;
+}
+
+.row:hover {
+  display: flex;
+  height: 250px;
+  width: 300px;
+  margin: 10px auto;
+  background: url(../../oblako_clear.png);
+  justify-content: center;
+}
+
+.text {
+  text-align: center;
+  margin-top: 35%;
+  max-width: 60%;
+  display: flex;
+  font-size: large;
+}

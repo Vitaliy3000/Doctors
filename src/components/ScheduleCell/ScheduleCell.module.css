@@ -1,0 +1,75 @@
+.row {
+  /* display: flex;
+  flex-direction: row;
+  justify-content: space-around; */
+  width: 100%;
+  height: 80px;
+  /*width: 150px;
+  border: 1px solid black;
+  margin: 10px auto; */
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(60, 194, 60);
+  height: 100px;
+  width: 120px;
+  border: 1px solid black;
+  margin: 10px auto;
+  border-radius: 10%;
+}
+
+.colAcive {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  width: 120px;
+  border: 1px solid black;
+  margin: 10px auto;
+  border-radius: 10%;
+  background-color: rgb(6, 73, 6);
+}
+
+.colNotAllowed {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(138, 85, 85, 0.753);
+  height: 100px;
+  width: 120px;
+  border: 1px solid black;
+  margin: 10px auto;
+  border-radius: 10%;
+}
+
+.colEmpty {
+  display: flex;
+  flex-direction: column;
+  background-color: gray;
+  height: 100px;
+  width: 120px;
+  border: 1px solid black;
+  margin: 10px auto;
+  border-radius: 10%;
+}
+
+.weekDay {
+  text-align: center;
+  margin: auto;
+  display: flex;
+}
+
+.date {
+  text-align: center;
+  margin: auto;
+  display: flex;
+}
+
+.time {
+  text-align: center;
+  margin: auto;
+  width: 80%;
+  display: flex;
+}
+
+
