@@ -1,4 +1,4 @@
-import { getDepartments, getDoctors, getSchedule } from '../proxyEmias'
+import { getDepartments, getDoctors, getSchedule, getCurrentSchedule } from '../proxyEmias'
 
 
 export const loadDepartments = payload => {
@@ -28,6 +28,16 @@ export const loadSchedule = payload => {
             .catch(() => dispatch(loadScheduleFailureAction));
 	};
 };
+
+
+export const loadCurrentSchedule = payload => {
+	return function(dispatch) {
+    dispatch(loadCurrentScheduleAction);
+    return getCurrentSchedule(...payload)
+            .then(response => dispatch(loadCurrentScheduleSuccess(response)))
+            .catch(() => dispatch(loadCurrentScheduleFailureAction));
+	};
+}
 
 
 export const initStateAction = {
@@ -91,4 +101,26 @@ export const loadScheduleSuccess = payload => {
 	type: 'LOAD_SCHEDULE_SUCCESS',
 	payload: payload,
 });}
+
+
+
+export const loadCurrentScheduleAction = {
+	type: 'LOAD_CURRENT_SCHEDULE',
+	payload: null,
+};
+
+
+export const loadCurrentScheduleFailureAction = {
+	type: 'LOAD_CURRENT_SCHEDULE_FAILURE',
+	payload: 'Авторизация завершилась с ошибкой',
+};
+
+
+export const loadCurrentScheduleSuccess = payload => {
+  return ({
+	type: 'LOAD_CURRENT_SCHEDULE_SUCCESS',
+	payload: payload,
+});}
+
+
 

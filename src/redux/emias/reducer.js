@@ -23,13 +23,22 @@ export default (state=[], action) => {
 			return {departments: state.departments, doctors: action.payload.filter(doctor => doctor.complexResource.length)};
 
 		case 'LOAD_SCHEDULE':
-			return {departments: state.departments, doctors: state.doctors};
+			return {departments: state.departments, doctors: state.doctors, currentSchedule: state.currentSchedule};
 
 		case 'LOAD_SCHEDULE_FAILURE':
-			return {departments: state.departments, doctors: state.doctors, schedule: [], textError: action.payload};
+			return {departments: state.departments, doctors: state.doctors, schedule: [], textError: action.payload, currentSchedule: state.currentSchedule};
 
 		case 'LOAD_SCHEDULE_SUCCESS':
-			return {departments: state.departments, doctors: state.doctors, schedule: action.payload['availableResource']};
+			return {departments: state.departments, doctors: state.doctors, schedule: action.payload['availableResource'], currentSchedule: state.currentSchedule};
+
+		case 'LOAD_CURRENT_SCHEDULE':
+			return {departments: state.departments, doctors: state.doctors, schedule: state.schedule};
+
+		case 'LOAD_CURRENT_SCHEDULE_FAILURE':
+			return {departments: state.departments, doctors: state.doctors, schedule: state.schedule, currentSchedule: [], textError: action.payload};
+
+		case 'LOAD_CURRENT_SCHEDULE_SUCCESS':
+			return {departments: state.departments, doctors: state.doctors, schedule: state.schedule, currentSchedule: action.payload['scheduleOfDay'].map(x=>x.date)};
 
 		default:
       return state;

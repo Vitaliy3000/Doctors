@@ -19,7 +19,7 @@ function request(body) {
 }
 
 
-const getDepartments = (omsNumber, birthDate) => request({
+export const getDepartments = (omsNumber, birthDate) => request({
   url: 'https://emias.info/api/new/eip2/?getSpecialitiesInfo',
   jsonrpc: "2.0",
   id: "",
@@ -28,7 +28,7 @@ const getDepartments = (omsNumber, birthDate) => request({
 });
 
 
-const getDoctors = (omsNumber, birthDate, specialityId) => request({
+export const getDoctors = (omsNumber, birthDate, specialityId) => request({
   url: 'https://emias.info/api/new/eip2/?getDoctorsInfo',
   jsonrpc: "2.0",
   id: "",
@@ -37,7 +37,7 @@ const getDoctors = (omsNumber, birthDate, specialityId) => request({
 });
 
 
-const getSchedule = (lpuId) => request({
+export const getSchedule = (lpuId) => request({
   url: 'https://api.emias.info/jsonproxy/v1/',
   jsonrpc: "2.0",
   id: "",
@@ -46,4 +46,10 @@ const getSchedule = (lpuId) => request({
 })
 
 
-export { getDepartments, getDoctors, getSchedule };
+export const getCurrentSchedule = (omsNumber, birthDate, availableResourceId) => request({
+  url: 'https://emias.info/api/new/eip2/?getAvailableResourceScheduleInfo',
+  jsonrpc: "2.0",
+  id: "",
+  method: "getAvailableResourceScheduleInfo",
+  params: {omsNumber, birthDate, availableResourceId},
+})

@@ -1,33 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Spinner from 'react-bootstrap/Spinner';
-
-import ScheduleTable from '../components/ScheduleTable/ScheduleTable'
-
-import styles from './DefaultPage.module.css'
-
-
-const renderLoadPage = () => (
-	<div className={styles.loadPage} ><Spinner animation='border' variant='primary' /></div>
-)
-
-const renderPage = (schedule, doctors, doctorId) => {
-	console.log('props schedule', schedule, doctors, doctorId)
-	const doctor = doctors.filter(doctor => doctor.id === Number.parseInt(doctorId))[0];
-	const doctor_schedule = schedule.filter(row => doctor.id === Number.parseInt(row.id))[0];
-	return (
-		<div className={styles.page}>
-			<ScheduleTable
-				schedule={doctor_schedule}
-				doctor={doctor}
-			/>
-		</div>
-	);
-}
+import { loadCurrentSchedule } from '../redux/emias/actions'
+import ScheduleTable from '../components/ScheduleTable/ScheduleTable';
+import renderLoadPage from './LoadPage';
+import styles from './DefaultPage.module.css';
 
 
-function render( {schedule, doctors, match: {params: {doctorId}}} ) {
-	return schedule ? renderPage(schedule, doctors, doctorId) : renderLoadPage();
+class SchedulePage extends React.Component {
+	componentDidMount() {
+		this.props.loadCurrentSchedule([this.props.omsNumber, this.props.birthDate, this.props.match.params.doctorId])
+	}
+
+	renderPage() {
+		const doctor = this.props.doctors.filter(doctor => doctor.id === Number.parseInt(this.props.match.params.doctorId))[0];
+		const doctor_schedule = this.props.schedule.filter(row => doctor.id === Number.parseInt(row.id))[0];
+		return (
+			<div className={styles.page}>
+				<ScheduleTable
+					schedule={doctor_schedule}
+					doctor={doctor}
+				/>
+			</div>
+		);
+	}
+
+	render() {
+		console.log('schedule page', this.props.schedule, this.props.currentSchedule)
+		return this.props.loadingFlag ? renderLoadPage() : this.renderPage()
+	}
 }
 
 
@@ -35,15 +35,17 @@ const mapStateToProps = state => (
   {
 		doctors: state.emias.doctors,
 		schedule: state.emias.schedule,
-    // loadingFlag: !state.emias.doctors,
-    // omsNumber: state.user.omsNumber,
-    // birthDate: state.user.birthDate,
-    // lpuId: state.emias.doctors && state.emias.doctors.length !== 0 && state.emias.doctors[0].lpuId,
-    // schedule: state.emias.schedule,
+    loadingFlag: !state.emias.schedule || !state.emias.currentSchedule,
+    omsNumber: state.user.omsNumber,
+    birthDate: state.user.birthDate,
+  	currentSchedule: state.emias.currentSchedule,
   }
 );
 
-// const mapStateToProps = state => ({schedule: state.schedule.schedule});
+
+const mapDispatchToProps = dispatch => ({
+  loadCurrentSchedule: payload => dispatch(loadCurrentSchedule(payload)),
+});
 
 
-export default connect(mapStateToProps)(render);
+export default connect(mapStateToProps, mapDispatchToProps)(SchedulePage);

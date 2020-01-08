@@ -31,6 +31,28 @@
   background-color: rgb(6, 73, 6);
 }
 
+.colNow {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(13, 87, 172);
+  height: 100px;
+  width: 120px;
+  border: 1px solid black;
+  margin: 10px auto;
+  border-radius: 10%;
+}
+
+.colAciveNow {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  width: 120px;
+  border: 1px solid black;
+  margin: 10px auto;
+  border-radius: 10%;
+  background-color: rgb(5, 12, 51);
+}
+
 .colNotAllowed {
   display: flex;
   flex-direction: column;

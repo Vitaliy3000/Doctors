@@ -70,7 +70,15 @@ class ScheduleTable extends React.Component {
       let row = [];
       for (const day of week) {
         // active={Boolean(this.state[day.date])}
-        row.push(<td><ScheduleCell handleClick={this.handleClick} active={Boolean(this.state[day.date])} cell={day}/></td>)
+        row.push(
+          <td>
+            <ScheduleCell
+             handleClick={this.handleClick}
+             active={Boolean(this.state[day.date])}
+             cell={day}
+             currentFlag={this.props.currentSchedule.includes(day.date)}/>
+          </td>
+        )
       }
       table.push(<tr>{row}</tr>)
     }
@@ -103,6 +111,7 @@ const mapStateToProps = state => {console.log('state schedule table', state); re
   {
     omsNumber: state.user.omsNumber,
     birthDate: state.user.birthDate,
+    currentSchedule: state.emias.currentSchedule,
   }
 );}
 
